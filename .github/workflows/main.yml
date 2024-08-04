@@ -18,5 +18,12 @@ jobs:
          uses: actions/setup-dotnet@v3 # actions are like packages we are just using it
 
       -  name: publish (restore and build)
-         run: dotnet publish -c Release -o ./bin/Publish         
+         run: dotnet publish -c Release -o ./bin/Publish
+
+      -  name: deployment
+         uses: azure/webapps-deploy@v2
+         with:
+           app-name:  'LearningApp20'
+           publish-profile:  ${{  secrets.AZURE_PUBLISH_PROFILE  }}
+           package:  './bin/Pubish'
   
