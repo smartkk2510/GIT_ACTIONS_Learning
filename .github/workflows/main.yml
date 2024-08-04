@@ -1,0 +1,21 @@
+name: Publish
+
+on:
+  push:
+    branches:
+    -  main
+
+jobs:
+  # publish is the name for the job
+  publish:
+    runs-on: ubuntu-latest # OS where this job is going to perform/run in git server(machine)
+
+    steps:
+      -  uses: actions/checkout@v4 # git checkout <= coping the code from the repository to local machine(here git server)
+
+      -  name: setup .Net #name of the step it can be anything
+         uses: actions/setup-dotnet@v3 # actions are like packages we are just using it
+
+      -  name: publish
+         run: dotnet publish -c Release -o ./bin/Publish         
+  
